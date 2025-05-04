@@ -1,0 +1,11 @@
+.navigation__bar {
+  width: 20%;
+  height: 100%;
+}
+
+
+.navigation__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
