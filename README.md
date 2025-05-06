@@ -1,2 +1,2 @@
 # perspective
-perspective is the front end for netsiege
+public-facing frontend for scorekeeper designed with competitors and spectators in mind
