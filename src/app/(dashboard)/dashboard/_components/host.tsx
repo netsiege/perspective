@@ -9,7 +9,7 @@ export default function HostCard({host}: HostCardProps) {
   const owner = host.claims.find(claim => claim.owner);
   const inControlTeamID = owner ? owner.team_id : null;
 
-  const servicesDown = host.services.filter(service => service.last);
+  const servicesDown = host.services.filter(service => !service.last);
   return (
     <div className={styles.card}>
       <div className={styles.data}>
