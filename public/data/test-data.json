@@ -3,7 +3,7 @@
     "_id": 1,
     "name": "love",
     "ip": "192.168.220.12",
-    "control": [
+    "claims": [
       {
         "path": "/home/jacob/ctrl.txt",
         "owner": 0,
@@ -33,7 +33,7 @@
     "_id": 2,
     "name": "anger",
     "ip": "192.168.220.13",
-    "control": [
+    "claims": [
       {
         "path": "/var/www/wordpress/ctrl.txt",
         "owner": 0,

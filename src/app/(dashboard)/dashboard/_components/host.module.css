@@ -1,0 +1,15 @@
+.card {
+  height: 300px;
+  width: 150px;
+  background-color: #1e2124;
+  border-radius: 5px;
+
+  text-align: center;
+}
+
+.data {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+

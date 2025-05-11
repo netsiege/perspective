@@ -8,10 +8,10 @@ type NavigationBarProps = {
 
 export default function NavigationBar({routes}: NavigationBarProps) {
   return (
-    <nav className={styles.navigation__bar}>
-      <ul className={styles.navigation__list}>
+    <nav className={styles.bar}>
+      <ul className={styles.list}>
       {routes.map((route, index) => (
-        <li key={index}>
+        <li key={index} className={styles.item}>
           <Link href={`/${route.reference}`}>{route.name}</Link>
         </li>
       ))}
