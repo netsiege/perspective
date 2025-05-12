@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "type": "module",
   "dependencies": {
     "axios": "^1.9.0",
     "dotenv": "^16.5.0",
@@ -23,6 +24,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/socket.io-client": "^1.4.36",
-    "typescript": "^5"
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
   }
 }
