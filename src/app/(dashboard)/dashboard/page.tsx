@@ -18,7 +18,8 @@ export default function Dashboard() {
   const [data, setData] = useState<Host[]>([]);
   useEffect(() => {
     // Get initial data
-    axios.get(`${backendHost}boxes`).then((res) => {
+    axios.get(`${backendHost}api/boxes`).then((res) => {
+      console.log(res.data)
       setData(res.data);
     })
 
