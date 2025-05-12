@@ -14,21 +14,25 @@ export default function HostCard({host}: HostCardProps) {
     <div className={styles.card}>
       <div className={styles.data}>
         <div>
-          <p>{host.name}</p>
+          <p className={styles.name}>{host.name}</p>
           <hr></hr>
-          <p>{host.ip}</p>
+          <p className={styles.ip}>{host.ip}</p>
         </div>
 
         <div>
-          <p>Owner: {inControlTeamID == -1 ? "none" : inControlTeamID}</p>
+          <p className={styles.owner}>owner: {inControlTeamID == -1 ? "none" : inControlTeamID}</p>
           <hr></hr>
-          {host.claims.map((claim) => <p key={`${claim.name}`}>{claim.name} : {inControlTeamID == -1 ? "none" : inControlTeamID}</p>)}
+          {host.claims.map((claim) => 
+            <p className={styles.items} key={`${claim.name}`}>{claim.name} : {inControlTeamID == -1 ? "none" : inControlTeamID}</p>
+          )}
         </div>
 
         <div>
-          <p>Services Down</p>
+          <p>services</p>
           <hr></hr>
-          {servicesDown.map((service) => <p key={`${service.name}:${service.port}`}>{service.name}</p>)}
+          {servicesDown.map((service) => 
+            <p className={styles.items} key={`${service.name}:${service.port}`}>{service.name}</p>
+          )}
         </div>
       </div>
     </div>

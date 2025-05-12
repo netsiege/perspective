@@ -11,9 +11,11 @@ export default function NavigationBar({routes}: NavigationBarProps) {
     <nav className={styles.bar}>
       <ul className={styles.list}>
       {routes.map((route, index) => (
-        <li key={index} className={styles.item}>
-          <Link href={`/${route.reference}`}>{route.name}</Link>
-        </li>
+        <Link href={`/${route.reference}`} key={index} passHref>
+          <li className={styles.item}>
+            {route.name}
+          </li>
+        </Link>
       ))}
       </ul>
     </nav>

@@ -2,28 +2,33 @@
 
 import { useEffect, useState } from "react";
 import { socket } from "../socket";
-import HostCard from "./_components/host";
+import HostCard from "./_components/host/host";
 import type { Host, UpdateClaim, UpdateService } from "@/types/data"
 import axios from "axios";
-import { eventNames } from "@/types/event-names";
 import styles from "./page.module.css";
 
-export default function Home() {
+export default function Dashboard() {
+  const backendHost = process.env.NEXT_PUBLIC_BACKEND_HOST;
+  const eventNames = {
+    claims: process.env.NEXT_PUBLIC_EVENT_CLAIMS,
+    services: process.env.NEXT_PUBLIC_EVENT_SERVICES,
+    teams: process.env.NEXT_PUBLIC_EVENT_TEAMS
+  }
 
   const [data, setData] = useState<Host[]>([]);
   useEffect(() => {
     // Get initial data
-    axios.get("http://localhost:3000/data/test-data.json").then((res) => {
+    axios.get(`${backendHost}boxes`).then((res) => {
       setData(res.data);
     })
 
     // Listen for updates from socket
-    socket.on(eventNames.claims, handleClaimUpdates);
-    socket.on(eventNames.services, handleServiceUpdates);
+    socket.on(eventNames.claims!, handleClaimUpdates);
+    socket.on(eventNames.services!, handleServiceUpdates);
 
     // Cleanup
     return () => {
-      socket.off(eventNames.teams);
+      socket.off(eventNames.teams!);
     };
   }, []);
 
@@ -49,7 +54,6 @@ export default function Home() {
   
   return (
     <div>
-      Dashboard Page
       <div className={styles.boxes}>
         {data.map((host) => (
           <HostCard key={host._id} host={host}/>

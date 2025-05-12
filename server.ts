@@ -1,25 +1,13 @@
 import { createServer, IncomingMessage, ServerResponse } from "node:http";
 import next from "next";
 import { Server } from 'socket.io';
+import dotenv from 'dotenv';
 
-const backendEndpoint = "http://localhost:3000/";
+dotenv.config();
+
 const dev = process.env.NODE_ENV !== "production";
-const hostname = "localhost";
-const port = 3000;
-
-const endpoints = {
-  teams: "/update/teams",
-  boxes: "/update/boxes",
-  tokens:"/update/tokens",
-  services: "/update/services",
-  claims: "/update/claims"
-}
-
-export const eventNames = {
-  teams: "update-teams",
-  claims: "update-claims",
-  services: "update-services",
-}
+const hostname = process.env.HOSTNAME || "localhost";
+const port = parseInt(process.env.PORT || "3000", 10);
 
 const app = next({ dev, hostname, port});
 const handler = app.getRequestHandler();
@@ -27,8 +15,9 @@ const handler = app.getRequestHandler();
 app.prepare().then(() => {
   const httpServer = createServer(async (req, res) => {
     if (req.method === "POST") {
-      console.log("RECIEVE POST!");
+      console.log("Recieved post: ", req.url);
       handlePost(req, res, io);
+      return;
     }
     handler(req, res);
   });
@@ -51,8 +40,39 @@ app.prepare().then(() => {
 });
 
 
+function requireEnv(name: string): string {
+  const value = process.env[name];
+  if (!value) throw new Error(`Missing required env var: ${name}`);
+  return value;
+}
+
+export const endpoints = {
+  team: requireEnv("ENDPOINT_TEAM"),
+  boxes: requireEnv("ENDPOINT_BOXES"),
+  tokens: requireEnv("ENDPOINT_TOKENS"),
+  services: requireEnv("ENDPOINT_SERVICES"),
+  claims: requireEnv("ENDPOINT_CLAIMS"),
+  points: requireEnv("ENDPOINT_POINTS"),
+};
+
+export const eventNames = {
+  teams: requireEnv("EVENT_TEAMS"),
+  boxes: requireEnv("EVENT_BOXES"),
+  claims: requireEnv("EVENT_CLAIMS"),
+  tokens: requireEnv("EVENT_TOKENS"),
+  services: requireEnv("EVENT_SERVICES"),
+  points: requireEnv("EVENT_POINTS"),
+};
+
 const handlePost = async (req: IncomingMessage, res: ServerResponse, io: Server) => {
   try {
+    if (req.url?.startsWith("/__nextjs_")) {
+      console.log("Skipping internal Next.js request:", req.url);
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ message: "Skipped internal Next.js request" }));
+      return; // Ensure no further processing
+    }
+
     const buffers: Uint8Array[] = [];
 
     // Collect chunks of data
@@ -65,14 +85,23 @@ const handlePost = async (req: IncomingMessage, res: ServerResponse, io: Server)
 
     // Handle the request based on URL
     switch (req.url) {
-      case endpoints.teams:
+      case endpoints.team:
         io.emit(eventNames.teams, body);
+        break;
+      case endpoints.boxes:
+        io.emit(eventNames.boxes, body);
+        break;
+      case endpoints.tokens:
+        io.emit(eventNames.tokens, body);
+        break;
+      case endpoints.services:
+        io.emit(eventNames.services, body);
         break;
       case endpoints.claims:
         io.emit(eventNames.claims, body);
         break;
-      case endpoints.services:
-        io.emit(eventNames.services, body);
+      case endpoints.points:
+        io.emit(eventNames.points, body);
         break;
       default:
         console.warn("WARN: Invalid endpoint");
