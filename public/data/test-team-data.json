@@ -1,0 +1,26 @@
+[
+    {
+        "_id":1,
+        "name":"red",
+        "token":"posfdj-3298aoifjapsoifpaiosjf",
+        "points": 30
+    },
+    {
+        "_id":2,
+        "name":"blue",
+        "token":"asdflaksdjfa-09assafasdfaasdff",
+        "points": 70
+    },
+    {
+        "_id":3,
+        "name":"green",
+        "token":"pasdfhsdsskfghsdrytsgsdfgsvnsdf",
+        "points": 1003
+    },
+    {
+        "_id":4,
+        "name":"black",
+        "token":"asdfahasdfasalsdkjfa0n",
+        "points": 20
+    }
+]

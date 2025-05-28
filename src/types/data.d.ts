@@ -22,6 +22,13 @@ export interface Service {
   last: boolean // Represents if the service is up or down
 }
 
+export interface Team {
+  _id: number,
+  name: string,
+  token: number,
+  points: number
+}
+
 export interface UpdateClaim {
   [host_id: number] : Array<Claim>
 }
