@@ -28,7 +28,7 @@ export default function HostCard({host}: HostCardProps) {
         </div>
 
         <div>
-          <p>services</p>
+          <p>Services Down</p>
           <hr></hr>
           {servicesDown.map((service) => 
             <p className={styles.items} key={`${service.name}:${service.port}`}>{service.name}</p>

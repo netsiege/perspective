@@ -1,0 +1,28 @@
+.card {
+  height: 300px;
+  width: 150px;
+  background-color: 	#36393e;
+  border-radius: 15px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.data {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.ip {
+  font-size: 11px;
+}
+
+.items {
+  font-size: 11px;
+}
