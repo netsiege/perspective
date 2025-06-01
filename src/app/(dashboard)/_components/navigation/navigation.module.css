@@ -1,7 +1,8 @@
 .bar {
   width: 180px;
   height: 100%;
-  background-color: #282b30;
+  background-color: rgb(37, 35, 33);
+  text-align: center;
 }
 
 .list {
@@ -10,7 +11,7 @@
 }
 
 .item {
-  padding: 10px;
+  padding: 50px 0px;
 }
 
 .item:hover {

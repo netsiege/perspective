@@ -1,5 +1,28 @@
+/* .boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-bottom: 32px;
+  width: 100%;
+  padding: 0 24px;
+  box-sizing: border-box;
+} */
+
+/* .boxes {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  gap: 16px;
+  overflow-x: auto; /* optional */
+  /* padding: 24px; */
+  /* justify-content: center; */
+/* } * */
 .boxes {
   display: flex;
-  flex-direction: row;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: left;
+  padding: 24px;
 }

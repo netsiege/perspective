@@ -33,7 +33,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body>
         <NavigationBar routes={routes}></NavigationBar>
         <main>{children}</main>
       </body>

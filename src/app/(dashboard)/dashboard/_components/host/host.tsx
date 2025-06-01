@@ -15,25 +15,25 @@ export default function HostCard({host}: HostCardProps) {
       <div className={styles.data}>
         <div>
           <p className={styles.name}>{host.name}</p>
-          <hr></hr>
+          <hr className={styles.line}></hr>
           <p className={styles.ip}>{host.ip}</p>
         </div>
+      </div>
 
-        <div>
-          <p className={styles.owner}>owner: {inControlTeamID == -1 ? "none" : inControlTeamID}</p>
-          <hr></hr>
-          {host.claims.map((claim) => 
-            <p className={styles.items} key={`${claim.name}`}>{claim.name} : {inControlTeamID == -1 ? "none" : inControlTeamID}</p>
-          )}
-        </div>
+      <div className={styles.data}>
+        <p className={styles.owner}>owner: {inControlTeamID == -1 ? "none" : inControlTeamID}</p>
+        <hr className={styles.line}></hr>
+        {host.claims.map((claim) => 
+          <p className={styles.items} key={`${claim.name}`}>{claim.name} : {inControlTeamID == -1 ? "none" : inControlTeamID}</p>
+        )}
+      </div>
 
-        <div>
-          <p>Services Down</p>
-          <hr></hr>
-          {servicesDown.map((service) => 
-            <p className={styles.items} key={`${service.name}:${service.port}`}>{service.name}</p>
-          )}
-        </div>
+      <div className={styles.data}>
+        <p>services down</p>
+        <hr className={styles.line}></hr>
+        {servicesDown.map((service) => 
+          <p className={styles.items} key={`${service.name}:${service.port}`}>{service.name}</p>
+        )}
       </div>
     </div>
   );

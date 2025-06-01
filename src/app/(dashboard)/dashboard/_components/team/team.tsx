@@ -11,13 +11,8 @@ export default function TeamCard({ team }: TeamCardProps) {
       <div className={styles.data}>
         <div>
           <p className={styles.name}>{team.name}</p>
-          <hr />
-          <p className={styles.id}>Team ID: {team._id}</p>
-        </div>
-
-        <div>
+          <hr className={styles.line} />
           <p className={styles.token}>Token: {team.token}</p>
-          <hr />
           <p className={styles.points}>Points: {team.points}</p>
         </div>
       </div>
