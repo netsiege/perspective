@@ -1,4 +1,7 @@
 .card {
+
+  font-family: 'Mina', sans-serif; /* Apply Mina font to the card */
+ 
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   height: 200px;
@@ -31,6 +34,7 @@
 }
 
 .name {
+ 
   font-size: 16px;
   /* font-weight: 700; */
 }
