@@ -12,6 +12,7 @@ type ClaimWithHost = Claim & {
   port?: number;
 };
 
+
 export default function Control() {
   const backendHost = process.env.NEXT_PUBLIC_BACKEND_HOST;
   const eventNames = {

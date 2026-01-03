@@ -42,20 +42,6 @@ export default function Services() {
   }, []);
 
   return (
-    // <div className="p-6">
-    //     <h1 className="text-3xl font-bold text-white mb-6">Services</h1>
-    //     <div className="space-y-6">
-    //         {hosts.map((host) => (
-    //             <div key={host._id}>
-    //                 <div className="flex space-x-8 items-center mb-2">
-    //                     <h2 className="text-lg text-white">{host.name}</h2>
-    //                     <p className="text-lg text-[#a89984]">{host.ip}</p>
-    //                 </div>
-                    
-    //             </div>
-    //         ))}
-    //     </div>
-    // </div>
     <div className="p-6">
       <h1 className="text-2xl font-bold text-white mb-6">Services</h1>
       <div className="space-y-6">
