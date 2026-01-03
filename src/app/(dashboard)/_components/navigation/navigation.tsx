@@ -55,13 +55,13 @@ export default function NavigationBar({ routes }: NavigationBarProps) {
 				</div>
 				<form className="mt-6">
 					<div className="mb-4">
-						<label htmlFor="email" className="block text-sm font-medium text-gray-700">
-								Email
+						<label htmlFor="teamName" className="block text-sm font-medium text-gray-700">
+								Team Name
 						</label>
 						<input
-							type="email"
-							id="email"
-							placeholder="Enter your email"
+							type="text"
+							id="teamName"
+							placeholder="Enter your team name"
 							className="w-full px-4 py-2 mt-1 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ebdbb2]"
 						/>
 					</div>
