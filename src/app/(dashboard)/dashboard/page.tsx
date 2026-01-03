@@ -70,6 +70,11 @@ export default function Dashboard() {
   
   return (
     <div>
+        <div className="p-6">
+        <h1 className="text-2xl font-bold text-white">Dashboard</h1>
+        </div>
+    
+
       <div className={styles.boxes}>
         {data.map((host) => (
           <HostCard key={host._id} host={host}/>

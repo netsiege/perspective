@@ -95,7 +95,7 @@ export default function Control() {
                 <thead className="bg-[#504945]">
                   <tr>
                     <th className="px-4 py-3 text-left text-sm font-medium text-white">Host</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-white">Claim Name</th>
+                    <th className="px-4 py-3 text-left text-sm font-medium text-white">Control Name</th>
                     <th className="px-4 py-3 text-left text-sm font-medium text-white">Path</th>
                     <th className="px-4 py-3 text-left text-sm font-medium text-white">Port</th>
                   </tr>
@@ -104,7 +104,7 @@ export default function Control() {
                   {claims.length === 0 ? (
                     <tr>
                       <td colSpan={6} className="px-4 py-3 text-center text-sm text-white">
-                        No claims
+                        No control
                       </td>
                     </tr>
                   ) : (

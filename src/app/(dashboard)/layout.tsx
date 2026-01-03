@@ -20,6 +20,7 @@ export default function RootLayout({
     {name: 'Dashboard', reference: 'dashboard'},
     {name: 'Control', reference: 'control'},
     {name: 'Services', reference: 'services'},
+  
   ];
 
   return (

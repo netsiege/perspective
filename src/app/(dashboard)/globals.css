@@ -36,7 +36,7 @@ main {
   width: 100%;
 }
 
-a {
+/* a {
   color: inherit
 }
 
@@ -44,13 +44,13 @@ a {
 
 ul {
   list-style: none;
-}
+} */
 
 .table-glow {
-  /* border: #282828ff; */
-  box-shadow: 0 0 5px 0px #84776aff;
+  outline: 2px solid #928374ff !important;
+  /* box-shadow: 0 0 5px 0px #928374ff; */
 }
 
 .table-glow:hover {
-    box-shadow: 0 0 20px 6px #84776aff;
+    box-shadow: 0 0 20px 6px #928374ff;
 }
