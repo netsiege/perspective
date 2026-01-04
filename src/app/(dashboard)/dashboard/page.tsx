@@ -7,6 +7,7 @@ import TeamCard from "./_components/team/team";
 import type { Host, Team, UpdateClaim, UpdateService } from "@/types/data"
 import axios from "axios";
 import styles from "./page.module.css";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Dashboard() {
   const backendHost = process.env.NEXT_PUBLIC_BACKEND_HOST;
@@ -18,6 +19,7 @@ export default function Dashboard() {
 
   const [data, setData] = useState<Host[]>([]);
   const [teams, setTeams] = useState<Team[]>([]);
+  const { isAuthenticated, teamId } = useAuth();
 
   useEffect(() => {
     // Get initial data
@@ -68,10 +70,20 @@ export default function Dashboard() {
     setTeams(incomingData);
   };
   
+  // Sort teams to show authenticated team first
+  const sortedTeams = isAuthenticated && teamId
+    ? [...teams].sort((a, b) => a._id === teamId ? -1 : b._id === teamId ? 1 : 0)
+    : teams;
+  
   return (
     <div>
         <div className="p-6">
         <h1 className="text-2xl font-bold text-white">Dashboard</h1>
+        {isAuthenticated && (
+          <p className="text-sm text-gray-400 mt-1">
+            Viewing as authenticated team - your team is highlighted
+          </p>
+        )}
         </div>
     
 
@@ -81,8 +93,12 @@ export default function Dashboard() {
         ))}
       </div>
       <div className={styles.boxes}>
-        {teams.map((team) => (
-          <TeamCard key={team._id} team={team} />
+        {sortedTeams.map((team) => (
+          <TeamCard 
+            key={team._id} 
+            team={team} 
+            isAuthenticatedTeam={isAuthenticated && team._id === teamId}
+          />
         ))}
       </div>
     </div>

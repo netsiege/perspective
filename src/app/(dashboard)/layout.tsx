@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import NavigationBar from "./_components/navigation/navigation";
 import { NavigationRoute } from "@/types/types";
+import { AuthProvider } from "@/context/AuthContext";
 
 
 
@@ -26,8 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning>
-        <NavigationBar routes={routes}></NavigationBar>
-        <main>{children}</main>
+        <AuthProvider>
+          <NavigationBar routes={routes}></NavigationBar>
+          <main>{children}</main>
+        </AuthProvider>
       </body>
     </html>
   );

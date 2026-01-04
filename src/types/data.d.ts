@@ -37,4 +37,33 @@ export interface UpdateService {
   [host_id: number] : Array<Service>
 }
 
+export interface AuthResponse {
+  message: string;
+  team_id: number;
+  team_name: string;
+  session_id: string;
+  token: string;
+  expires_in: number;
+}
+
+export interface TeamSession {
+  token: string;
+  team_id: number;
+  team_name: string;
+  expires_at: number;
+}
+
+export interface AuthState {
+  isAuthenticated: boolean;
+  teamId: number | null;
+  teamName: string | null;
+  loading: boolean;
+}
+
+export interface VerifyResponse {
+  valid: boolean;
+  team_id: number;
+  team_name: string;
+}
+
 

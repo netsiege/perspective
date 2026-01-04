@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-	allowedDevOrigins: ['10.7.7.7'],
+	allowedDevOrigins: ['localhost:3000'],
+	webpack: (config) => {
+		config.resolve.fallback = { fs: false, net: false, tls: false };
+		return config;
+	},
 };
 
 export default nextConfig;
