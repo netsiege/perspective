@@ -46,7 +46,7 @@ export const login = async (teamName: string, password: string): Promise<AuthRes
   
   // Store session in localStorage
   saveSession(data);
-  
+  console.log(data);
   return data;
 };
 

@@ -20,7 +20,8 @@ export default function TeamCard({ team, isAuthenticatedTeam = false }: TeamCard
             )}
           </p>
           <hr className={styles.line} />
-          <p className={styles.token}>Token: {team.token}</p>
+          {isAuthenticatedTeam ? <p className={styles.token}>Token: {team.token}</p> : <p></p>}
+          {/* <p className={styles.token}>Token: {team.token}</p> */}
           <p className={styles.points}>Points: {team.points}</p>
         </div>
       </div>

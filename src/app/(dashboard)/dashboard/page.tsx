@@ -70,30 +70,47 @@ export default function Dashboard() {
     setTeams(incomingData);
   };
   
-  // Sort teams to show authenticated team first
-  const sortedTeams = isAuthenticated && teamId
-    ? [...teams].sort((a, b) => a._id === teamId ? -1 : b._id === teamId ? 1 : 0)
+  // Only show authenticated team first
+  const visibleTeams =
+  isAuthenticated && teamId
+    ? teams.filter(team => team._id === teamId)
     : teams;
+
+  // Only show boxes that teams control
+  const controlBoxes = isAuthenticated && teamId ? data.filter(host => host.claims.some(claim => claim.team_id === teamId)) : data;
   
   return (
     <div>
-        <div className="p-6">
-        <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-        {isAuthenticated && (
-          <p className="text-sm text-gray-400 mt-1">
-            Viewing as authenticated team - your team is highlighted
-          </p>
-        )}
-        </div>
-    
+      <div className="p-6 space-y-4">
+      <h1 className="text-2xl font-bold text-white">
+        Dashboard
+      </h1>
 
+      {/* {isAuthenticated && (
+        <div className="rounded-lg bg-[#a89984]/10 border border-2 border-[#a89984] px-4 py-2">
+          <p className="text-sm text-white">
+            Viewing as authenticated team
+          </p>
+        </div>
+      )} */}
+    </div>
+
+    {isAuthenticated && controlBoxes.length === 0 && (
+      <div className="px-6 pb-2">
+        <div className="rounded-lg bg-red-500/10 border border-red-500/30 px-4 py-3">
+          <p className="text-sm text-red-400">
+            Your team does not control any boxes yet
+          </p>
+        </div>
+      </div>
+    )}
       <div className={styles.boxes}>
-        {data.map((host) => (
+        {controlBoxes.map((host) => (
           <HostCard key={host._id} host={host}/>
         ))}
       </div>
       <div className={styles.boxes}>
-        {sortedTeams.map((team) => (
+        {visibleTeams.map((team) => (
           <TeamCard 
             key={team._id} 
             team={team} 
