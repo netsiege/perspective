@@ -1,0 +1,182 @@
+ [
+    
+    {
+      "_id": 1,
+      "name": "love",
+      "ip": "192.168.220.12",
+      "claims": [
+        {
+          "path": "/home/jacob/ctrl.txt",
+          "owner": false,
+          "name": "user",
+          "team_id": -1,
+          "value": 2
+        },
+        {
+          "path": "/root/ctrl.txt",
+          "owner": true,
+          "name": "root",
+          "team_id": -1,
+          "value": 4
+        }
+      ],
+      "services": [
+        {
+          "regex": "EmotionDetection API",
+          "path": "/api/README.txt",
+          "name": "project-share",
+          "port": 21,
+          "last": true
+        }
+      ]
+    },
+    {
+      "_id": 2,
+      "name": "anger",
+      "ip": "192.168.220.13",
+      "claims": [
+        {
+          "path": "/var/www/wordpress/ctrl.txt",
+          "owner": false,
+          "name": "web",
+          "team_id": -1,
+          "value": 1
+        },
+        {
+          "path": "/home/steven/ctrl.txt",
+          "owner": false,
+          "name": "user",
+          "team_id": -1,
+          "value": 2
+        },
+        {
+          "path": "/root/ctrl.txt",
+          "owner": true,
+          "name": "root",
+          "team_id": -1,
+          "value": 4
+        }
+      ],
+      "services": [
+        {
+          "regex": "Welcome To Emotions Inc.",
+          "path": "/index.php",
+          "name": "website",
+          "port": 80,
+          "last": true
+        }
+      ]
+    },
+    {
+      "_id": 3,
+      "name": "anger",
+      "ip": "192.168.220.13",
+      "claims": [
+        {
+          "path": "/var/www/wordpress/ctrl.txt",
+          "owner": false,
+          "name": "web",
+          "team_id": -1,
+          "value": 1
+        },
+        {
+          "path": "/home/steven/ctrl.txt",
+          "owner": false,
+          "name": "user",
+          "team_id": -1,
+          "value": 2
+        },
+        {
+          "path": "/root/ctrl.txt",
+          "owner": true,
+          "name": "root",
+          "team_id": -1,
+          "value": 4
+        }
+      ],
+      "services": [
+        {
+          "regex": "Welcome To Emotions Inc.",
+          "path": "/index.php",
+          "name": "website",
+          "port": 80,
+          "last": true
+        }
+      ]
+    },
+    {
+      "_id": 4,
+      "name": "anger",
+      "ip": "192.168.220.13",
+      "claims": [
+        {
+          "path": "/var/www/wordpress/ctrl.txt",
+          "owner": false,
+          "name": "web",
+          "team_id": -1,
+          "value": 1
+        },
+        {
+          "path": "/home/steven/ctrl.txt",
+          "owner": false,
+          "name": "user",
+          "team_id": -1,
+          "value": 2
+        },
+        {
+          "path": "/root/ctrl.txt",
+          "owner": true,
+          "name": "root",
+          "team_id": -1,
+          "value": 4
+        }
+      ],
+      "services": [
+        {
+          "regex": "Welcome To Emotions Inc.",
+          "path": "/index.php",
+          "name": "strawberrymatcha",
+          "port": 80,
+          "last": true
+        }
+      ]
+    },
+    {
+      "_id": 5,
+      "name": "love",
+      "ip": "192.168.220.13",
+      "claims": [
+        {
+          "path": "/var/www/wordpress/ctrl.txt",
+          "owner": false,
+          "name": "web",
+          "team_id": -1,
+          "value": 1
+        },
+        {
+          "path": "/home/steven/ctrl.txt",
+          "owner": false,
+          "name": "user",
+          "team_id": -1,
+          "value": 2
+        },
+        {
+          "path": "/root/ctrl.txt",
+          "owner": true,
+          "name": "root",
+          "team_id": -1,
+          "value": 4
+        }
+      ],
+      "services": [
+        {
+          "regex": "Welcome To Emotions Inc.",
+          "path": "/index.php",
+          "name": "website",
+          "port": 80,
+          "last": true
+        }
+      ]
+    }
+    
+]

@@ -92,13 +92,13 @@ export default function Control() {
                 <h2 className="text-lg font-semibold text-[#ebdbb2]">{team.name}</h2>
                 <p className="text-base text-[#a89984]">Points: {team.points}</p>
               </div>
-              <table className=" table-glow w-full rounded-lg overflow-hidden">
+              <table className="table-fixed table-glow w-full rounded-lg overflow-hidden">
                 <thead className="bg-[#504945]">
                   <tr>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-white">Host</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-white">Control Name</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-white">Path</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-white">Port</th>
+                    <th className="w-1/5 px-4 py-3 text-left text-sm font-medium text-white">Host</th>
+                    <th className="w-1/4 px-4 py-3 text-left text-sm font-medium text-white">Control Name</th>
+                    <th className="w-auto px-4 py-3 text-left text-sm font-medium text-white">Path</th>
+                    <th className="w-20 px-4 py-3 text-left text-sm font-medium text-white">Port</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -116,7 +116,7 @@ export default function Control() {
                           <div className="text-xs text-[#928374ff]">{claim.hostName}</div>
                         </td>
                         <td className="px-4 py-3 text-sm text-white">{claim.name}</td>
-                        <td className="px-4 py-3 text-sm text-white">{claim.path}</td>
+                        <td className="break-all px-4 py-3 text-sm text-white">{claim.path}</td>
                         <td className="px-4 py-3 text-sm text-white">{claim.port || "-"}</td>
                       </tr>
                     ))

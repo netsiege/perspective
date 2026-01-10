@@ -25,13 +25,19 @@ export default function RootLayout({
   ];
 
   return (
+
     <html lang="en">
-      <body suppressHydrationWarning>
-        <AuthProvider>
-          <NavigationBar routes={routes}></NavigationBar>
-          <main>{children}</main>
-        </AuthProvider>
-      </body>
-    </html>
+  <body suppressHydrationWarning className="min-h-screen">
+    <AuthProvider>
+      <div className="flex min-h-screen">
+        <NavigationBar routes={routes} />
+
+        <main className="flex-1 overflow-y-auto">
+          {children}
+        </main>
+      </div>
+    </AuthProvider>
+  </body>
+</html>
   );
 }

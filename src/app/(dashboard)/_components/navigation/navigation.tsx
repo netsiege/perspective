@@ -50,7 +50,7 @@ export default function NavigationBar({ routes }: NavigationBarProps) {
   };
 
   return (
-    <div className="flex flex-col w-48 bg-[#171717] text-white h-screen p-4">
+    <div className="flex flex-col w-48 bg-[#171717] text-white min-h-full p-4">
 		<div className="mb-6 mt-4 flex items-baseline space-x-2">
 			<FaChessRook className="text-2xl text-white" />
 			<span className="text-2xl font-semibold text-white">Netsiege</span>

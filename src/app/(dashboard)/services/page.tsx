@@ -7,10 +7,15 @@ import { socket } from "../socket";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 
+
+
 export default function Services() {
   const backendHost = process.env.NEXT_PUBLIC_BACKEND_HOST;
   const eventName = process.env.NEXT_PUBLIC_EVENT_SERVICES;
   const [hosts, setHosts] = useState<Host[]>([]);
+
+
+  
 
   useEffect(() => {
     // Get initial data
@@ -51,13 +56,13 @@ export default function Services() {
               <h2 className="text-lg font-semibold text-[#ebdbb2]">{host.name}</h2>
               <p className="text-sm text-[#a89984]">{host.ip}</p>
             </div>
-            <table className=" table-glow w-full rounded-lg overflow-hidden">
+            <table className="table-fixed table-glow w-full rounded-lg overflow-hidden">
               <thead className="bg-[#504945]">
                 <tr>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-white">Name</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-white">Status</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-white">Port</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-white">Path</th>
+                  <th className="w-1/4 px-4 py-3 text-left text-sm font-medium text-white">Name</th>
+                  <th className="w-1/5 px-4 py-3 text-left text-sm font-medium text-white">Status</th>
+                  <th className="w-1/5 px-4 py-3 text-left text-sm font-medium text-white">Port</th>
+                  <th className="w-auto px-4 py-3 text-left text-sm font-medium text-white">Path</th>
                 </tr>
               </thead>
               <tbody>
@@ -70,7 +75,7 @@ export default function Services() {
                 ) : (
                   host.services.map((service, i) => (
                     <tr key={i} className="hover:bg-[#504945]/20 border-b border-[#504945]">
-                      <td className="px-4 py-3 text-sm text-white">{service.name}</td>
+                      <td className="break-all px-4 py-3 text-sm text-white">{service.name}</td>
                       <td className="px-4 py-3">
                         <span className={service.last ? "text-[#8ec07c]" : "text-[#fb4934]"}>
                           {service.last ? (<button
@@ -87,7 +92,7 @@ export default function Services() {
                         </span>
                       </td>
                       <td className="px-4 py-3 text-sm text-white">{service.port}</td>
-                      <td className="px-4 py-3 text-sm text-white">{service.path}</td>
+                      <td className="break-all px-4 py-3 text-sm text-white">{service.path}</td>
                     </tr>
                   ))
                 )}
