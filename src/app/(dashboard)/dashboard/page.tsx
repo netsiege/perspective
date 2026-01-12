@@ -124,17 +124,17 @@ export default function Dashboard() {
 
   useEffect(() => {
     // Get initial data
-    setData(fakeClaims);
-    setTeams(fakeTeams);
-    // axios.get(`${backendHost}api/boxes`).then((res) => {
-    //   console.log(res.data)
-    //   setData(res.data);
-    // })
+    // setData(fakeClaims);
+    // setTeams(fakeTeams);
+    axios.get(`${backendHost}api/boxes`).then((res) => {
+      console.log(res.data)
+      setData(res.data);
+    })
 
-    // axios.get(`${backendHost}api/teams`).then((res) => {
-    //   console.log("Teams:", res.data);
-    //   setTeams(res.data);
-    // });
+    axios.get(`${backendHost}api/teams`).then((res) => {
+      console.log("Teams:", res.data);
+      setTeams(res.data);
+    });
 
     // Listen for updates from socket
     socket.on(eventNames.claims!, handleClaimUpdates);
