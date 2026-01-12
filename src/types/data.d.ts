@@ -2,8 +2,8 @@ export interface Host {
   _id: number,
   name: string,
   ip: string,
-  claims: Array<Claim>,
-  services: Array<Service>
+  claims: Record<string, Claim>,
+  services: Record<string, Service>
 }
 
 export interface Claim {
