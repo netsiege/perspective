@@ -14,9 +14,6 @@ export default function Services() {
   const eventName = process.env.NEXT_PUBLIC_EVENT_SERVICES;
   const [hosts, setHosts] = useState<Host[]>([]);
 
-
-  
-
   useEffect(() => {
     // Get initial data
     axios.get(`${backendHost}api/boxes`).then((res) => {

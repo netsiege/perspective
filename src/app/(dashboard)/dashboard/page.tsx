@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo} from "react";
 import { socket } from "../socket";
 import HostCard from "./_components/host/host";
 import TeamCard from "./_components/team/team";
@@ -17,21 +17,124 @@ export default function Dashboard() {
     teams: process.env.NEXT_PUBLIC_EVENT_TEAMS
   }
 
+  const fakeClaims: Host[] =  [
+    {
+      "_id": 1,
+      "name": "love",
+      "ip": "192.168.220.12",
+      "claims": [
+        {
+          "path": "/home/jacob/ctrl.txt",
+          "owner": true,
+          "name": "user",
+          "team_id": 2,
+          "value": 2
+        },
+        {
+          "path": "/root/ctrl.txt",
+          "owner": true,
+          "name": "root",
+          "team_id": -1,
+          "value": 4
+        }
+      ],
+      "services": [
+        {
+          "regex": "EmotionDetection API",
+          "path": "/api/README.txt",
+          "name": "project-share",
+          "port": 21,
+          "last": true
+        }
+      ]
+    },
+    {
+      "_id": 2,
+      "name": "anger",
+      "ip": "192.168.220.13",
+      "claims": [
+        {
+          "path": "/var/www/wordpress/ctrl.txt",
+          "owner": false,
+          "name": "web",
+          "team_id": -1,
+          "value": 1
+        },
+        {
+          "path": "/home/steven/ctrl.txt",
+          "owner": false,
+          "name": "user",
+          "team_id": -1,
+          "value": 2
+        },
+        {
+          "path": "/root/ctrl.txt",
+          "owner": true,
+          "name": "root",
+          "team_id": -1,
+          "value": 4
+        }
+      ],
+      "services": [
+        {
+          "regex": "Welcome To Emotions Inc.",
+          "path": "/index.php",
+          "name": "website",
+          "port": 80,
+          "last": true
+        }
+      ]
+    },
+];
+
+  const fakeTeams: Team[] = [
+    {
+      "_id":1,
+      "name":"red",
+      "token": 2,
+      "points": 30
+  },
+  {
+      "_id":2,
+      "name":"blue",
+      "token":3,
+      "points": 70
+  },
+  {
+      "_id":3,
+      "name":"green",
+      "token":55,
+      "points": 1003
+  },
+  {
+      "_id":4,
+      "name":"black",
+      "token":90,
+      "points": 20
+  }
+  ]
+
   const [data, setData] = useState<Host[]>([]);
   const [teams, setTeams] = useState<Team[]>([]);
   const { isAuthenticated, teamId } = useAuth();
 
+  type ControlBox = Host & {
+    teamName?: string;
+  };
+
   useEffect(() => {
     // Get initial data
-    axios.get(`${backendHost}api/boxes`).then((res) => {
-      console.log(res.data)
-      setData(res.data);
-    })
+    setData(fakeClaims);
+    setTeams(fakeTeams);
+    // axios.get(`${backendHost}api/boxes`).then((res) => {
+    //   console.log(res.data)
+    //   setData(res.data);
+    // })
 
-    axios.get(`${backendHost}api/teams`).then((res) => {
-      console.log("Teams:", res.data);
-      setTeams(res.data);
-    });
+    // axios.get(`${backendHost}api/teams`).then((res) => {
+    //   console.log("Teams:", res.data);
+    //   setTeams(res.data);
+    // });
 
     // Listen for updates from socket
     socket.on(eventNames.claims!, handleClaimUpdates);
@@ -76,8 +179,30 @@ export default function Dashboard() {
     ? teams.filter(team => team._id === teamId)
     : teams;
 
-  // Only show boxes that teams control
-  const controlBoxes = isAuthenticated && teamId ? data.filter(host => host.claims.some(claim => claim.team_id === teamId)) : data;
+  const teamMap = useMemo(() => {
+    const map = new Map<number, string>();
+    teams.forEach(team => {
+        map.set(team._id, team.name);
+    });
+    return map;
+    }, [teams]);
+  
+  const controlBoxes: ControlBox[] = useMemo(() => {
+    return data
+      .filter(host => teamId
+          ? host.claims.some(claim => claim.team_id === teamId)
+          : true
+      )
+      .map(host => {
+        const ownerClaim = host.claims.find(claim => claim.owner === true);
+  
+        return {
+          ...host,
+          teamName: ownerClaim
+            ? teamMap.get(ownerClaim.team_id) : 'Unclaimed'
+        };
+      });
+  }, [data, teams, teamId, teamMap]);
   
   return (
     <div>
