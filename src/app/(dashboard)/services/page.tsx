@@ -63,14 +63,14 @@ export default function Services() {
                 </tr>
               </thead>
               <tbody>
-                {host.services.length === 0 ? (
+                {Object.values(host.services).length === 0 ? (
                   <tr>
                     <td colSpan={4} className="px-4 py-3 text-center text-sm text-[#ebdbb2]">
                       No services
                     </td>
                   </tr>
                 ) : (
-                  host.services.map((service, i) => (
+                  Object.values(host.services).map((service, i) => (
                     <tr key={i} className="hover:bg-[#504945]/20 border-b border-[#504945]">
                       <td className="break-all px-4 py-3 text-sm text-white">{service.name}</td>
                       <td className="px-4 py-3">

@@ -30,11 +30,11 @@ export interface Team {
 }
 
 export interface UpdateClaim {
-  [host_id: number] : Array<Claim>
+  [host_id: number] : Record<string, Claim>
 }
 
 export interface UpdateService {
-  [host_id: number] : Array<Service>
+  [host_id: number] : Record<string, Service>
 }
 
 export interface AuthResponse {
