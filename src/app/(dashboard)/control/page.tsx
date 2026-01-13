@@ -102,7 +102,7 @@ export default function Control() {
                 <tbody>
                   {claims.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className="px-4 py-3 text-center text-sm text-white">
+                      <td colSpan={4} className="px-4 py-3 text-center text-sm text-white">
                         No control
                       </td>
                     </tr>
