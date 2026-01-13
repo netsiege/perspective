@@ -116,6 +116,7 @@ export default function Dashboard() {
 
   const [data, setData] = useState<Host[]>([]);
   const [teams, setTeams] = useState<Team[]>([]);
+  const [showAllHosts, setShowAllHosts] = useState(false);
   const { isAuthenticated, teamId } = useAuth();
 
   type ControlBox = Host & {
@@ -189,10 +190,14 @@ export default function Dashboard() {
   
   const controlBoxes: ControlBox[] = useMemo(() => {
     return data
-      .filter(host => teamId
+      .filter(host => {
+        if (!isAuthenticated || showAllHosts) {
+          return true;
+        }
+        return teamId
           ? Object.values(host.claims).some(claim => claim.team_id === teamId)
-          : true
-      )
+          : true;
+      })
       .map(host => {
         const ownerClaim = Object.values(host.claims).find(claim => claim.owner === true);
   
@@ -202,25 +207,40 @@ export default function Dashboard() {
             ? teamMap.get(ownerClaim.team_id) : 'Unclaimed'
         };
       });
-  }, [data, teams, teamId, teamMap]);
+  }, [data, teams, teamId, teamMap, isAuthenticated, showAllHosts]);
   
   return (
     <div>
       <div className="p-6 space-y-4">
-      <h1 className="text-2xl font-bold text-white">
-        Dashboard
-      </h1>
-
-      {/* {isAuthenticated && (
-        <div className="rounded-lg bg-[#a89984]/10 border border-2 border-[#a89984] px-4 py-2">
-          <p className="text-sm text-white">
-            Viewing as authenticated team
-          </p>
-        </div>
-      )} */}
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-white">
+          Dashboard
+        </h1>
+        
+        {isAuthenticated && (
+          <div className="flex items-center gap-3">
+            <span className="text-sm text-white">
+              {showAllHosts ? "All Hosts" : "My Team's Hosts"}
+            </span>
+            <button
+              onClick={() => setShowAllHosts(!showAllHosts)}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                showAllHosts ? 'bg-[#a89984]' : 'bg-gray-600'
+              }`}
+              aria-label="Toggle host view"
+            >
+              <span
+                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                  showAllHosts ? 'translate-x-6' : 'translate-x-1'
+                }`}
+              />
+            </button>
+          </div>
+        )}
+      </div>
     </div>
 
-    {isAuthenticated && controlBoxes.length === 0 && (
+    {isAuthenticated && !showAllHosts && controlBoxes.length === 0 && (
       <div className="px-6 pb-2">
         <div className="rounded-lg bg-red-500/10 border border-red-500/30 px-4 py-3">
           <p className="text-sm text-red-400">
