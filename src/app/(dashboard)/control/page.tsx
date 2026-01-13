@@ -24,11 +24,9 @@ export default function Control() {
   useEffect(() => {
     // Get initial data
     axios.get(`${backendHost}api/boxes`).then((res) => {
-      console.log(res.data);
       setHosts(res.data);
     });
     axios.get(`${backendHost}api/teams`).then((res) => {
-      console.log("Teams:", res.data);
       setTeams(res.data);
     });
 

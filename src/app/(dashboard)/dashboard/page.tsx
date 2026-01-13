@@ -127,12 +127,10 @@ export default function Dashboard() {
     // setData(fakeClaims);
     // setTeams(fakeTeams);
     axios.get(`${backendHost}api/boxes`).then((res) => {
-      console.log(res.data)
       setData(res.data);
     })
 
     axios.get(`${backendHost}api/teams`).then((res) => {
-      console.log("Teams:", res.data);
       setTeams(res.data);
     });
 

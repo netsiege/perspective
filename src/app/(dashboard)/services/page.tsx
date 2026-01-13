@@ -17,7 +17,6 @@ export default function Services() {
   useEffect(() => {
     // Get initial data
     axios.get(`${backendHost}api/boxes`).then((res) => {
-      console.log(res.data);
       setHosts(res.data);
     });
 
