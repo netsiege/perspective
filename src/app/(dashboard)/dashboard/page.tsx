@@ -22,68 +22,68 @@ export default function Dashboard() {
       "_id": 1,
       "name": "love",
       "ip": "192.168.220.12",
-      "claims": [
-        {
+      "claims": {
+        "/home/jacob/ctrl.txt": {
           "path": "/home/jacob/ctrl.txt",
           "owner": true,
           "name": "user",
           "team_id": 2,
           "value": 2
         },
-        {
+        "/root/ctrl.txt": {
           "path": "/root/ctrl.txt",
           "owner": true,
           "name": "root",
           "team_id": -1,
           "value": 4
         }
-      ],
-      "services": [
-        {
+      },
+      "services": {
+        "project-share": {
           "regex": "EmotionDetection API",
           "path": "/api/README.txt",
           "name": "project-share",
           "port": 21,
           "last": true
         }
-      ]
+      }
     },
     {
       "_id": 2,
       "name": "anger",
       "ip": "192.168.220.13",
-      "claims": [
-        {
+      "claims": {
+        "/var/www/wordpress/ctrl.txt": {
           "path": "/var/www/wordpress/ctrl.txt",
           "owner": false,
           "name": "web",
           "team_id": -1,
           "value": 1
         },
-        {
+        "/home/steven/ctrl.txt": {
           "path": "/home/steven/ctrl.txt",
           "owner": false,
           "name": "user",
           "team_id": -1,
           "value": 2
         },
-        {
+        "/root/ctrl.txt": {
           "path": "/root/ctrl.txt",
           "owner": true,
           "name": "root",
           "team_id": -1,
           "value": 4
         }
-      ],
-      "services": [
-        {
+      },
+      "services": {
+        "website": {
           "regex": "Welcome To Emotions Inc.",
           "path": "/index.php",
           "name": "website",
           "port": 80,
           "last": true
         }
-      ]
+      }
     },
 ];
 
@@ -128,12 +128,10 @@ export default function Dashboard() {
     // setData(fakeClaims);
     // setTeams(fakeTeams);
     axios.get(`${backendHost}api/boxes`).then((res) => {
-      console.log(res.data)
       setData(res.data);
     })
 
     axios.get(`${backendHost}api/teams`).then((res) => {
-      console.log("Teams:", res.data);
       setTeams(res.data);
     });
 

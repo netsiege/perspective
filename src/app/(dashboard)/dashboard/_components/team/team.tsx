@@ -51,7 +51,6 @@ export default function TeamCard({ team, isAuthenticatedTeam = false }: TeamCard
 
   const handleCopy = () => {
     copy(team.token.toString());
-    console.log("Should copy:", team.token);
     setCopied(true);
 
     setTimeout(() => setCopied(false), 2000); // reset after 2s
