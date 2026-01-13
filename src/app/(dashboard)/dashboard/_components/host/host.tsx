@@ -10,12 +10,14 @@ type HostCardProps = {
 }
 
 export default function HostCard({host}: HostCardProps) {
-  const owner = host.claims.find(claim => claim.owner);
+  const claims = Object.values(host.claims);
+  const owner = claims.find(claim => claim.owner);
   const inControlTeamID = owner ? owner.team_id : null;
   
 //   const inControlTeamName = owner ? owner.name : null;
 
-  const servicesDown = host.services.filter(service => !service.last);
+  const services = Object.values(host.services);
+  const servicesDown = services.filter(service => !service.last);
   return (
     <div className={styles.card}>
       <div className={styles.data}>
@@ -29,8 +31,8 @@ export default function HostCard({host}: HostCardProps) {
       <div className={styles.data}>
         <p className="text-white font-semibold">owner: {inControlTeamID == -1 ? "none" : host.teamName}</p>
         <hr className={styles.line}></hr>
-        {host.claims.map((claim) => 
-          <p className="text-[#a89984]" key={`${claim.name}`}>{claim.name} : {inControlTeamID == -1 ? "none" : host.teamName}</p>
+        {claims.map((claim) => 
+          <p className={styles.items} key={`${claim.name}`}>{claim.name} : {inControlTeamID == -1 ? "none" : inControlTeamID}</p>
         )}
       </div>
 
