@@ -231,7 +231,7 @@ export default function Dashboard() {
     )}
       <div className={styles.boxes}>
         {controlBoxes.map((host) => (
-          <HostCard key={host._id} host={host}/>
+          <HostCard key={host._id} host={host} teamMap={teamMap}/>
         ))}
       </div>
       <div className={styles.boxes}>

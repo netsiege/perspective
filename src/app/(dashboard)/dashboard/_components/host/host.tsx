@@ -6,16 +6,15 @@ type ControlBox = Host & {
   };
 
 type HostCardProps = {
-  host: ControlBox
+  host: ControlBox,
+  teamMap: Map<number, string>
 }
 
-export default function HostCard({host}: HostCardProps) {
+export default function HostCard({host, teamMap}: HostCardProps) {
   const claims = Object.values(host.claims);
   const owner = claims.find(claim => claim.owner);
   const inControlTeamID = owner ? owner.team_id : null;
   
-//   const inControlTeamName = owner ? owner.name : null;
-
   const services = Object.values(host.services);
   const servicesDown = services.filter(service => !service.last);
   return (
@@ -31,9 +30,12 @@ export default function HostCard({host}: HostCardProps) {
       <div className={styles.data}>
         <p className="text-white font-semibold">owner: {inControlTeamID == -1 ? "none" : host.teamName}</p>
         <hr className={styles.line}></hr>
-        {claims.map((claim) => 
-          <p className={styles.items} key={`${claim.name}`}>{claim.name} : {inControlTeamID == -1 ? "none" : host.teamName}</p>
-        )}
+        {claims.map((claim) => {
+          const displayTeamId = inControlTeamID !== -1 && inControlTeamID !== null ? inControlTeamID : claim.team_id;
+          return (
+            <p className={styles.items} key={`${claim.name}`}>{claim.name} : {displayTeamId == -1 ? "none" : teamMap.get(displayTeamId)}</p>
+          );
+        })}
       </div>
 
       <div className={styles.data}>
