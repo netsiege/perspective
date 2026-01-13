@@ -32,7 +32,7 @@ export default function HostCard({host}: HostCardProps) {
         <p className="text-white font-semibold">owner: {inControlTeamID == -1 ? "none" : host.teamName}</p>
         <hr className={styles.line}></hr>
         {claims.map((claim) => 
-          <p className={styles.items} key={`${claim.name}`}>{claim.name} : {inControlTeamID == -1 ? "none" : inControlTeamID}</p>
+          <p className={styles.items} key={`${claim.name}`}>{claim.name} : {inControlTeamID == -1 ? "none" : host.teamName}</p>
         )}
       </div>
 
@@ -40,7 +40,7 @@ export default function HostCard({host}: HostCardProps) {
         <p className="text-white font-semibold">services down</p>
         <hr className={styles.line}></hr>
         {servicesDown.map((service) => 
-          <p className="ext-[#a89984]" key={`${service.name}:${service.port}`}>{service.name}</p>
+          <p className="text-[#a89984]" key={`${service.name}:${service.port}`}>{service.name}</p>
         )}
       </div>
     </div>

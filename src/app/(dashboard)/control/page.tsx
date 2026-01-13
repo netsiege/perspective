@@ -59,7 +59,7 @@ export default function Control() {
     const claimsByTeam: { [teamId: number]: ClaimWithHost[] } = {};
 
     hosts.forEach((host) => {
-      host.claims.forEach((claim) => {
+      Object.values(host.claims).forEach((claim) => {
         // Map claim to team if team_id matches a team's _id
         // team_id of -1 means unclaimed
         if (claim.team_id !== -1) {
