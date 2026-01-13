@@ -76,21 +76,23 @@ export default function TeamCard({ team, isAuthenticatedTeam = false }: TeamCard
         <hr className={styles.line} />
 
         {/* Token input + copy button */}
-        <div className="relative w-full max-w-[16rem] items-center rounded-lg bg-white/10 px-3 py-2 mb-2">
-          <p className="text-white">Token: {team.token}</p>
-          <button
-            onClick={handleCopy}
-            
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded hover:bg-white/20"
-            aria-label="Copy token"
-          >
-            {copied ? (
-             "Copied!"
-            ) : (
-              <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-6 5h6m-6 4h6M10 3v4h4V3h-4Z"/></svg>
-            )}
-          </button>
-        </div>
+        {isAuthenticatedTeam && (
+          <div className="relative w-full max-w-[16rem] items-center rounded-lg bg-white/10 px-3 py-2 mb-2">
+            <p className="text-white">Token: {team.token}</p>
+            <button
+              onClick={handleCopy}
+              
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded hover:bg-white/20"
+              aria-label="Copy token"
+            >
+              {copied ? (
+              "Copied!"
+              ) : (
+                <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-6 5h6m-6 4h6M10 3v4h4V3h-4Z"/></svg>
+              )}
+            </button>
+          </div>
+        )}
         <div className="relative w-full max-w-[16rem] items-center rounded-lg bg-white/10 px-3 py-2">
         <p className="text-white">Points: {team.points}</p>
         </div>
