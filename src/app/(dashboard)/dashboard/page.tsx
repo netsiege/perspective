@@ -190,11 +190,11 @@ export default function Dashboard() {
   const controlBoxes: ControlBox[] = useMemo(() => {
     return data
       .filter(host => teamId
-          ? host.claims.some(claim => claim.team_id === teamId)
+          ? Object.values(host.claims).some(claim => claim.team_id === teamId)
           : true
       )
       .map(host => {
-        const ownerClaim = host.claims.find(claim => claim.owner === true);
+        const ownerClaim = Object.values(host.claims).find(claim => claim.owner === true);
   
         return {
           ...host,
