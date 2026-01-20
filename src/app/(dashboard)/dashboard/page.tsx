@@ -154,7 +154,10 @@ export default function Dashboard() {
     return currentData.map((host) => {
       const newData = incomingData[host._id];
       if (newData !== undefined) {
-        return { ...host, [prop]: newData}
+        // Merge incoming data with existing data instead of replacing
+        // This preserves data that wasn't included in the update
+        const currentPropData = host[prop] as Record<string, any>;
+        return { ...host, [prop]: { ...currentPropData, ...newData } }
       }
       return host;
     });

@@ -26,7 +26,9 @@ export default function Services() {
         return currentHosts.map((host) => {
           const newServices = incomingData[host._id];
           if (newServices !== undefined) {
-            return { ...host, services: newServices };
+            // Merge incoming services with existing services instead of replacing
+            // This preserves data that wasn't included in the update
+            return { ...host, services: { ...host.services, ...newServices } };
           }
           return host;
         });

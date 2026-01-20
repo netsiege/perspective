@@ -36,7 +36,9 @@ export default function Control() {
         return currentHosts.map((host) => {
           const newClaims = incomingData[host._id];
           if (newClaims !== undefined) {
-            return { ...host, claims: newClaims };
+            // Merge incoming claims with existing claims instead of replacing
+            // This preserves data that wasn't included in the update
+            return { ...host, claims: { ...host.claims, ...newClaims } };
           }
           return host;
         });
