@@ -252,13 +252,13 @@ export default function Dashboard() {
     )}
       <div className={styles.boxes}>
         {controlBoxes.map((host) => (
-          <HostCard key={host._id} host={host} teamMap={teamMap}/>
+          <HostCard key={host._id ?? `host-${host.name}-${host.ip}`} host={host} teamMap={teamMap}/>
         ))}
       </div>
       <div className={styles.boxes}>
         {visibleTeams.map((team) => (
           <TeamCard 
-            key={team._id} 
+            key={team._id ?? `team-${team.name}`} 
             team={team} 
             isAuthenticatedTeam={isAuthenticated && team._id === teamId}
           />

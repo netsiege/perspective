@@ -33,7 +33,7 @@ export default function HostCard({host, teamMap}: HostCardProps) {
         {claims.map((claim) => {
           const displayTeamId = inControlTeamID !== -1 && inControlTeamID !== null ? inControlTeamID : claim.team_id;
           return (
-            <p className={styles.items} key={`${claim.name}`}>{claim.name} : {displayTeamId == -1 ? "none" : teamMap.get(displayTeamId)}</p>
+            <p className={styles.items} key={claim.path ?? `${claim.name}-${claim.path}`}>{claim.name} : {displayTeamId == -1 ? "none" : teamMap.get(displayTeamId)}</p>
           );
         })}
       </div>

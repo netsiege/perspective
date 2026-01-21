@@ -87,7 +87,7 @@ export default function Control() {
         {teams.map((team) => {
           const claims = teamClaims[team._id] || [];
           return (
-            <div key={team._id}>
+            <div key={team._id ?? `team-${team.name}`}>
               <div className="flex space-x-8 items-center mb-2">
                 <h2 className="text-lg font-semibold text-[#ebdbb2]">{team.name}</h2>
                 <p className="text-base text-[#a89984]">Points: {team.points}</p>
@@ -110,7 +110,7 @@ export default function Control() {
                     </tr>
                   ) : (
                     claims.map((claim, i) => (
-                      <tr key={i} className="border-b border-[#504945]">
+                      <tr key={claim.path ?? `${claim.hostId}-${claim.name}-${i}`} className="border-b border-[#504945]">
                         <td className="px-4 py-3 text-sm text-white">
                           <div>{claim.hostName}</div>
                           <div className="text-xs text-[#928374ff]">{claim.hostName}</div>

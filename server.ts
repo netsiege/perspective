@@ -27,6 +27,7 @@ app.prepare().then(() => {
   // Socket connection handler
   io.on("connection", (socket) => {
     console.log("User connection:", socket.id);
+    console.log("hello")
   });
 
   httpServer

@@ -49,7 +49,7 @@ export default function Services() {
       <h1 className="text-2xl font-bold text-white mb-6">Services</h1>
       <div className="space-y-6">
         {hosts.map((host) => (
-          <div key={host._id}>
+          <div key={host._id ?? `host-${host.name}-${host.ip}`}>
             <div className="mb-2">
               <h2 className="text-lg font-semibold text-[#ebdbb2]">{host.name}</h2>
               <p className="text-sm text-[#a89984]">{host.ip}</p>
@@ -72,7 +72,7 @@ export default function Services() {
                   </tr>
                 ) : (
                   Object.values(host.services).map((service, i) => (
-                    <tr key={i} className="hover:bg-[#504945]/20 border-b border-[#504945]">
+                    <tr key={ `${service.name}-${service.port}-${i}`} className="hover:bg-[#504945]/20 border-b border-[#504945]">
                       <td className="break-all px-4 py-3 text-sm text-white">{service.name}</td>
                       <td className="px-4 py-3">
                         <span className={service.last ? "text-[#8ec07c]" : "text-[#fb4934]"}>
